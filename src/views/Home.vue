@@ -13,11 +13,8 @@
       <p class="cat-title">{{selctcatogory.toUpperCase()}}</p>
     </div>
     <div class="partthree">
-      <CaedApi v-for="info in infos" :key="info.id" :imagesource="info.image" :title="info.title"/>
+      <CaedApi v-for="info in infos" :count="info.id" :key="info.id" :srcpic="info.image" :price="info.price" :title="info.title"/>
     </div>
-     
-    
-    <button @click="getapi">getapi</button>
   </div>
 </template>
 
@@ -51,7 +48,7 @@ export default {
       
       axios
       .get(urlapi.value)
-      .then(response => ( infos.rawValue = response.data));
+      .then(response => ( infos.value = response.data));
       
     }
     onMounted(() => {
@@ -62,12 +59,12 @@ export default {
         urlapi.value = "https://fakestoreapi.com/products"
          axios
       .get(urlapi.value)
-      .then(response => ( infos.rawValue = response.data));
+      .then(response => ( infos.value = response.data));
       }else{
       urlapi.value = `https://fakestoreapi.com/products/category/${selctcatogory.value}`
       axios
       .get(urlapi.value)
-      .then(response => ( infos.rawValue = response.data));
+      .then(response => ( infos.value = response.data));
       }
     })
 
@@ -138,6 +135,48 @@ export default {
       grid-template-rows: 1fr 1fr 1fr 1fr;
       gap: .8rem;
     }
+    @media screen and (max-width: 1196px) {
+      .partthree{
+            // display: grid;
+            grid-template-columns: 1fr 1fr 1fr ;
+            // grid-template-rows: 1fr 1fr 1fr 1fr;
+            gap: .8rem;
+            // background-color: aqua;
+          }
+      }
+    @media screen and (max-width: 972px) {
+      .partthree{
+            // display: grid;
+            grid-template-columns: 1fr 1fr ;
+            grid-template-rows: 1fr 1fr ;
+            gap: .8rem;
+            // background-color: aqua;
+            
+          }
+      }
+    @media screen and (max-width: 750px) {
+     
+      .partthree{
+            // display: grid;
+            grid-template-columns: repeat(2,1fr) ;
+            grid-template-rows: 1fr;
+            gap: 0;
+            width: 85vw;
+            // background-color: aqua;
+            a{
+              display: flex;
+              justify-content: center;
+              margin-bottom:.5rem ;
+            }
+          }
+      } 
   }
+
+
+@media screen and (max-width: 750px) {
+ .home{padding-left:2rem; padding-right:2rem;}
+}
+// @media screen and (max-width: ) {}
+// @media screen and (max-width: ) {}
 
 </style>

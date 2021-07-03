@@ -1,5 +1,7 @@
 <template>
+<keep-alive>
   <AppHeader />
+</keep-alive>
    <router-view />
 </template>
 

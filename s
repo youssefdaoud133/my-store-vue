@@ -1,6 +1,7 @@
 import { onMounted, ref } from '@vue/runtime-core';
 import axios from "axios";
 
+      infos.rawValue
 
 setup(){
     let infos = ref(null)
@@ -18,3 +19,25 @@ setup(){
 
     return{infos,getapi}
   }
+
+
+
+
+
+  
+    data(){
+        return{
+            idproduct:this.$route.params.id,
+            more:null,
+           
+        }
+    },
+    mounted(){
+        axios
+      .get(`https://fakestoreapi.com/products/${this.idproduct}`)
+      .then(response => ( this.more = response.data));
+      
+    },
+    methods:{
+        gett(){return this.more.id}
+    }
